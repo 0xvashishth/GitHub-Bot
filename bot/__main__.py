@@ -12,7 +12,7 @@ from gidgethub import routing
 from gidgethub import sansio
 from gidgethub import apps
 
-from . import issue_greeter,pr_greeter
+from . import issue_greeter,pr_greeter,comment_reacter
 
 router = routing.Router(issue_greeter.router, pr_greeter.router, issue_labeler_review_needed.router, pr_review_needed_labeler.router, comment_reacter.router, issue_close_greet.router, pr_close_greet.router, issue_assign.router, workflow_status.router)
 
