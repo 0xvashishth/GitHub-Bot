@@ -12,10 +12,9 @@ from gidgethub import routing
 from gidgethub import sansio
 from gidgethub import apps
 
-from . import issue_greeter,pr_greeter,comment_reacter,issue_close_greet,pr_close_greet,workflow_status,pr_review_needed_labeler,pr_review_needed_labeler,issue_review_needed_labeler,issue_assign
+from . import issue_greeter, pr_greeter, issue_review_needed_labeler, pr_review_needed_labeler, comment_reacter, issue_close_greet, pr_close_greet, issue_assign, workflow_status
 
-router = routing.Router(issue_greeter.router, pr_greeter.router, issue_labeler_review_needed.router, pr_review_needed_labeler.router, comment_reacter.router, issue_close_greet.router, pr_close_greet.router, issue_assign.router, workflow_status.router)
-
+router = routing.Router(issue_greeter.router, pr_greeter.router, issue_review_needed_labeler.router, pr_review_needed_labeler.router, comment_reacter.router, issue_close_greet.router, pr_close_greet.router, issue_assign.router, workflow_status.router)
 
 cache = cachetools.LRUCache(maxsize=500)
 
