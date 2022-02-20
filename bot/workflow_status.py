@@ -24,23 +24,23 @@ async def workflow_job(event, gh, *arg, **kwargs):
 	)
 
 	status = event.data['workflow_run']['conclusion']
-	# ur = event.data['pull_request']['comments_url']
-	# link // we can set link acording to our convenience !!
-	pass
-	# if(status == "success"):
-	# 	messag = f"succeed"
-	# 	await gh.post(link, data={
-	# 		'body': messag,
-	# 		},
-            # oauth_token=installation_access_token["token"]
-            #      )
+	ur = event.data['pull_request']['comments_url']
+	link // we can set link acording to our convenience !!
+	# pass
+	if(status == "success"):
+		messag = f"succeed"
+		await gh.post(link, data={
+			'body': messag,
+			},
+            oauth_token=installation_access_token["token"]
+                 )
 
-	# elif(status == "failure"):
-	# 	messag = f"Failure"
-	# 	await gh.post(link, data={
-	# 		'body': messag,
-	# 		},
-            # oauth_token=installation_access_token["token"]
-            #      )
-	# else:
-	# 	return
+	elif(status == "failure"):
+		messag = f"Failure"
+		await gh.post(link, data={
+			'body': messag,
+			},
+            oauth_token=installation_access_token["token"]
+                 )
+	else:
+		return
