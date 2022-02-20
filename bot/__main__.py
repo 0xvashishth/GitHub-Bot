@@ -23,7 +23,7 @@ routes = web.RouteTableDef()
 
 @routes.get("/", name="home")
 async def handle_get(request):
-    return web.Response(text="Hello this is Vashishth")
+    return web.Response(text="<h1>Hello this is Vashishth</h1>")
 
 
 @routes.post("/webhook")
