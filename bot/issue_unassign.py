@@ -41,20 +41,24 @@ async def issue__comment_create_event(event, gh, *args, **kwargs):
 
     #finding author of the comment
     author = event.data['comment']['user']['login']
+    author_login = event.data['issue']['user']['login']
+    author_repo = event.data['repository']['owner']['login']
 
     #message for not assigning
-    message = "We cannot unssign this issue to you as it has no assignees !!";
+    message = "We cannot unssign this issue as it has no assignees !!";
 
-    if(comment_body == '/unassign') :
-        if(assinee) :
-            await gh.post(url_comment, data={
-                'body': message,
-            },
-            oauth_token=installation_access_token["token"]
-                 )
-        else :
-            await gh.post(main_url, data={
-                'assignees' : [],
-            },
-            oauth_token=installation_access_token["token"]
-                 )
+    # it will only unassign if commenter is issue creator or admin of repo
+    if(author == author_repo or author == author_login):
+        if(comment_body == '/unassign') :
+            if(not assinee) :
+                await gh.post(url_comment, data={
+                    'body': message,
+                },
+                oauth_token=installation_access_token["token"]
+                     )
+            else :
+                await gh.post(main_url, data={
+                    'assignees' : [],
+                },
+                oauth_token=installation_access_token["token"]
+                     )
