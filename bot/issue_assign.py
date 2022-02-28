@@ -39,12 +39,14 @@ async def issue__comment_create_event(event, gh, *args, **kwargs):
     #finding owner to not react on that comment
     issue_owner = event.data['issue']['user']['login']
 
+    repo_owner = event.data['repository']['owner']['login']
+
     #finding author of the comment
     author = event.data['comment']['user']['login']
 
     #message for not assigning
     message = "We cannot assign this issue to you as it already assigned to someone ! Thanks !";
-    message = "We cannot assign this issue to you as you are not owner of this issue ! Thanks !";
+    message1 = "We cannot assign this issue to you as you are not owner of this issue ! Thanks !";
 
     if(comment_body == '/assign') :
         if(assinee) :
@@ -54,7 +56,7 @@ async def issue__comment_create_event(event, gh, *args, **kwargs):
             oauth_token=installation_access_token["token"]
                  )
         else:
-            if(author == issue_owner) :
+            if(author == issue_owner or issue_owner == repo_owner) :
                 await gh.post(main_url, data={
                     'assignees' : [author],
                 },
