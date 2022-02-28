@@ -12,9 +12,9 @@ from gidgethub import routing
 from gidgethub import sansio
 from gidgethub import apps
 
-from . import issue_greeter, issue_unassign, pr_greeter, issue_review_needed_labeler, pr_review_needed_labeler, comment_reacter, issue_close_greet, pr_close_greet, issue_assign, workflow_status
+from . import issue_greeter, pr_greeter, issue_review_needed_labeler, pr_review_needed_labeler, issue_close_greet, pr_close_greet, issue_assign
 
-router = routing.Router(issue_greeter.router, issue_unassign.router, pr_greeter.router, issue_review_needed_labeler.router, pr_review_needed_labeler.router, comment_reacter.router, issue_close_greet.router, pr_close_greet.router, issue_assign.router, workflow_status.router)
+router = routing.Router(issue_greeter.router, pr_greeter.router, issue_review_needed_labeler.router, pr_review_needed_labeler.router, issue_close_greet.router, pr_close_greet.router, issue_assign.router)
 
 cache = cachetools.LRUCache(maxsize=500)
 
@@ -66,7 +66,7 @@ async def repo_installation_added(event, gh, *args, **kwargs):
     response = await gh.post(
         url,
                      data={
-        'title': 'Thanks for installing my bot',
+        'title': 'Thanks for installing Vashishth\'s bot',
         'body': 'Thanks!',
             },
         oauth_token=installation_access_token["token"]

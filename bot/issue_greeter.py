@@ -29,7 +29,7 @@ async def issue_opened_event(event, gh, *args, **kwargs):
     
     avatar = event.data['issue']['user']['avatar_url']
 
-    message = f"<br><table><tbody><tr><td>Thanks for opening the issue @{author}! I will look into it ASAP!\n Till then show your love by staring my repos 😋<br>Please assign this issue to you by commenting `/assign`.<br>And if you are repository admin or issue owner than you can unassign it by `/unassign` .</td><td> <img alt='Coding' width='100px' height='100px' src='{avatar}'></td></tr></tbody></table>"
+    message = f"<br><table><tbody><tr><td>Thanks for opening the issue @{author}! Someone will look into it ASAP!\n Till then show your love by staring my repos 😋<br>Please assign this issue to you by commenting `/assign`.</td><td> <img alt='Coding' width='100px' height='100px' src='https://user-images.githubusercontent.com/76911582/156033417-124ca5b1-0ac4-4685-9a18-0da1c0e8c175.png'></td></tr></tbody></table>"
     await gh.post(url, data={
         'body': message,
         },
