@@ -27,6 +27,9 @@ async def issue__comment_create_event(event, gh, *args, **kwargs):
 
     url = event.data['comment']['reactions']['url']
 
+    # fetching the msg body
+    c_body = event.data['comment']['body']
+
     repo_owner = event.data['repository']['owner']['login']
 
     #finding author of the comment
@@ -37,11 +40,14 @@ async def issue__comment_create_event(event, gh, *args, **kwargs):
 
         message = 'heart'
 
-        await gh.post(url, data={
-            'content': message,
-        },
-        oauth_token=installation_access_token["token"]
-                 )
+        if(c_body.find("Thank") == -1):
+            pass
+        else:
+            await gh.post(url, data={
+                'content': message,
+            },
+            oauth_token=installation_access_token["token"]
+                     )
 
 @router.register("issue_comment", action="edited")
 async def issue__comment_edit_event(event, gh, *args, **kwargs):
