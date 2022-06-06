@@ -26,7 +26,7 @@ async def issue_opened_event(event, gh, *args, **kwargs):
     )
     url = event.data['issue']['comments_url']
     author = event.data['issue']['user']['login']
-    message = f"<br><table><tbody><tr><td>Thanks for closing this issue @{author}! We hope you loved to work with our repository 😋.</td></tr></tbody></table>"
+    message = f"Thanks for contributing to this issue @{author}! We hope you loved to work with our repository 😋."
     
     await gh.post(url, data={
         'body': message,
