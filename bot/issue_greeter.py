@@ -29,7 +29,7 @@ async def issue_opened_event(event, gh, *args, **kwargs):
     
     avatar = event.data['issue']['user']['avatar_url']
 
-    message = f"<br><table><tbody><tr><td>Thanks for opening the issue @{author}! Someone will look into it ASAP!\n Till then show your love by staring my repos 😋<br>Please assign this issue to you by commenting `/assign`.</td><td> <img alt='Coding' width='100px' height='100px' src='https://user-images.githubusercontent.com/76911582/156033417-124ca5b1-0ac4-4685-9a18-0da1c0e8c175.png'></td></tr></tbody></table>"
+    message = f"<b> Hi @{author} 👋<br>Thanks for opening this issue. :octocat: </b><br>Someone will look into it soon! Till then show your love by staring [my repos](https://github.com/vasu-1?tab=repositories). 😋<br>You can assign this issue to you by commenting `/assign`. <br><i>By contributing, you are expected to uphold this [code of conduct](https://github.com/vasu-1/CalcHub/blob/main/CODE_OF_CONDUCT.md). Check this [guide](https://github.com/vasu-1/CalcHub/blob/main/.github/ContributingGuidelines.md) before contributing.</i>"
     await gh.post(url, data={
         'body': message,
         },
